@@ -337,7 +337,7 @@ async function startserver() {
     let argoArgs = [];
     // 放宽正则：只要包含 eyJ 且长度足够即可认为是 Token
     if (ARGO_AUTH.indexOf('eyJ') !== -1 && ARGO_AUTH.length > 50) {
-        argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', ARGO_AUTH];
+        argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', ARGO_AUTH, '--origin-tls-no-verify'];
     } else if (ARGO_AUTH.includes('TunnelSecret')) {
         argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--config', 'tunnel.yml', 'run'];
     } else {
