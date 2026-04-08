@@ -32,7 +32,7 @@ const NEZHA_PORT = process.env.NEZHA_PORT || '';
 const NEZHA_KEY = process.env.NEZHA_KEY || '';
 const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';
 const ARGO_AUTH = process.env.ARGO_AUTH || '';
-const ARGO_PORT = parseInt(process.env.ARGO_PORT) || 8001;
+const ARGO_PORT = parseInt(process.env.ARGO_PORT) || 8080;
 const CFIP = process.env.CFIP || 'saas.sin.fan';
 const CFPORT = process.env.CFPORT || 443;
 const NAME = process.env.NAME || 'gaga';
@@ -337,7 +337,7 @@ async function startserver() {
     let argoArgs = [];
     // 放宽正则：只要包含 eyJ 且长度足够即可认为是 Token
     if (ARGO_AUTH.indexOf('eyJ') !== -1 && ARGO_AUTH.length > 50) {
-        argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', ARGO_AUTH, '--origin-tls-no-verify'];
+        argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', ARGO_AUTH];
     } else if (ARGO_AUTH.includes('TunnelSecret')) {
         argoArgs = ['tunnel', '--edge-ip-version', 'auto', '--config', 'tunnel.yml', 'run'];
     } else {
